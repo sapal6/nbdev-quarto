@@ -28,4 +28,10 @@ function getsettings(f:: AbstractString, keys)
 end
 end
 
+#export
+"""
+> strip --> Helper fucntion to replace a substring y in a string x with blank.
+"""
+strip=(x::String,y) -> replace(x, y=>"")
+
 end

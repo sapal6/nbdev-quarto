@@ -24,14 +24,6 @@ using PlutoUI
 #hide
 using PlutoTest
 
-# ╔═╡ b795e345-d5d4-4966-a77c-168e21156f46
-#hide
-include("../src/Export.jl")
-
-# ╔═╡ 3b89e5ec-d099-4fac-8fae-2b5f7695350c
-#hide
-include("../src/Documenter.jl")
-
 # ╔═╡ cd7a8ece-670e-4db4-a689-bf1fe9a51c42
 #hide
 TableOfContents()
@@ -94,14 +86,26 @@ end
 #hide
 Export.notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 
+# ╔═╡ 8e892465-b405-461f-a7de-0d509ce5ca89
+md"## strip"
+
+# ╔═╡ 7c8e7585-f576-4df8-9fea-b9db8b53d87e
+#export
+"""
+> strip --> Helper fucntion to replace a substring y in a string x with blank.
+"""
+strip=(x::String,y) -> replace(x, y=>"")
+
+# ╔═╡ 5ab3ed5f-8000-450b-918e-97f802990d98
+#noop
+@test uppercasefirst(strip(strip("01_export.jl", r"[0-9_]"), r".jl")) == "Export"
+
 # ╔═╡ Cell order:
 # ╠═a96058a5-e563-4fa1-b014-feec6c4380ee
 # ╠═68ed9c30-c6dc-11ec-191c-832624c25a17
 # ╠═2c72c7dc-4bdb-4809-b33c-a34ae555120e
 # ╠═c02ea829-0a9b-4185-9784-daa42b290da2
 # ╠═cd7a8ece-670e-4db4-a689-bf1fe9a51c42
-# ╠═b795e345-d5d4-4966-a77c-168e21156f46
-# ╠═3b89e5ec-d099-4fac-8fae-2b5f7695350c
 # ╠═7d2ff452-0cec-4307-950c-228adf3ad8d5
 # ╠═15629b65-7f23-47cd-967d-4b65a4cbc250
 # ╠═14591bed-affc-4fff-b37c-f8869028e803
@@ -111,3 +115,6 @@ Export.notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 # ╠═6e0d170e-126e-4999-b6ce-8f063871ffe8
 # ╠═c6ad861d-c0d6-4edf-88e2-267be1184bce
 # ╠═7386505d-240c-46cf-9655-8ac30f41f148
+# ╠═8e892465-b405-461f-a7de-0d509ce5ca89
+# ╠═7c8e7585-f576-4df8-9fea-b9db8b53d87e
+# ╠═5ab3ed5f-8000-450b-918e-97f802990d98
