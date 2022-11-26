@@ -26,15 +26,6 @@ using PlutoTest
 #export
 include("../src/Nb.jl")
 
-# ╔═╡ bca8d2d5-fd42-4243-83cb-a8bffeaf0c03
-#export
-begin
-Code =Nb.Code
-Mk = Nb.Mk
-Cell = Nb.Cell
-Notebook = Nb.Notebook
-end
-
 # ╔═╡ 5da61dab-e09d-4556-a4c9-90c482c8c8d4
 #export
 CodeOrMk = Union{Code, Mk}
@@ -147,15 +138,36 @@ end
 # ╔═╡ 3777fcb5-9788-4da1-b972-7959ba204e86
 md"When `readnb` is provided with the `path` of a file, it reads the file and returns a `Notebook` type. A `Notebook` type contains an array of `Cells`"
 
+# ╔═╡ 16400814-4acf-4800-abbb-64fa415d9cdb
+nb =readnb("01_export.jl")
+
+# ╔═╡ 6b4d72be-d737-4871-a636-a91b43ea0bfe
+b = nb.cells
+
+# ╔═╡ 6236ca93-3206-4ed6-8a98-682c8bc70d0f
+a = nb.cells[2].cell
+
+# ╔═╡ 5283fd5b-1327-4765-a94f-d70b25e2eb1a
+a isa Nb.Code
+
+# ╔═╡ 109a41e5-124a-432b-a0fc-d28c6cffb9a9
+for cell in b
+	if cell.cell isa Nb.M
+	print(cell.cell.mk)
+	end
+end
+
 # ╔═╡ 701f6f28-c37b-43fb-ba6b-257baca5f0b6
 @test typeof(readnb("06_testfile.jl")) === Notebook
+
+# ╔═╡ 975da3c6-1e47-4061-b998-7fd1e9e09e10
+01_export.jl
 
 # ╔═╡ Cell order:
 # ╠═43451278-5097-42bf-825d-5a394f04b422
 # ╠═5c10e02c-4613-46f0-afc7-c47d626f5f2f
 # ╠═83c26df2-a9da-475d-9475-ee677985d2f7
 # ╠═130fb805-9e01-4ff6-84d3-b6fd7ad38fa3
-# ╠═bca8d2d5-fd42-4243-83cb-a8bffeaf0c03
 # ╠═5da61dab-e09d-4556-a4c9-90c482c8c8d4
 # ╠═bfdbfee5-1fd9-4b03-9bb3-e427a302b238
 # ╠═d251e196-725b-4c43-b248-a4a29423e43e
@@ -171,4 +183,10 @@ md"When `readnb` is provided with the `path` of a file, it reads the file and re
 # ╠═f05dd75a-f149-4e14-80c1-db9d3102953e
 # ╠═9ded7323-ad32-4f15-9485-7be2814f61e1
 # ╠═3777fcb5-9788-4da1-b972-7959ba204e86
+# ╠═16400814-4acf-4800-abbb-64fa415d9cdb
+# ╠═6b4d72be-d737-4871-a636-a91b43ea0bfe
+# ╠═6236ca93-3206-4ed6-8a98-682c8bc70d0f
+# ╠═5283fd5b-1327-4765-a94f-d70b25e2eb1a
+# ╠═109a41e5-124a-432b-a0fc-d28c6cffb9a9
 # ╠═701f6f28-c37b-43fb-ba6b-257baca5f0b6
+# ╠═975da3c6-1e47-4061-b998-7fd1e9e09e10
